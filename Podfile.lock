@@ -1,0 +1,15 @@
+PODS:
+  - fishhook (0.2)
+  - JRSwizzle (1.0)
+
+DEPENDENCIES:
+  - fishhook (~> 0.2)
+  - JRSwizzle (~> 1.0)
+
+SPEC CHECKSUMS:
+  fishhook: ea19933abfe8f2f52c55fd8b6e2718467d3ebc89
+  JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
+
+PODFILE CHECKSUM: 7c18a9a0ac69b2ca27ef2bad2736554a26dbf904
+
+COCOAPODS: 1.2.0
