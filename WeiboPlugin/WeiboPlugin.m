@@ -19,6 +19,18 @@
     return nil;
 }
 
+/*
+ WBMainUnreadFeedGroup 首页
+ WBTimeLineFeedGroup 好友圈
+ WBDirectionalFeedGroup 群微博
+ */
+
+#pragma mark - WBMainUnreadFeedGroup
+
++ (Class)cb_WBMainUnreadFeedGroup_class {
+    return [CBGetClass(WBMainFeedGroup) class];
+}
+
 #pragma mark - WBFeedGroup
 
 - (NSArray *)cb_fresh_status {
@@ -57,6 +69,14 @@
     return [self cb_fresh_status];
 }
 
+- (void)cb_WBMainFeedGroup_reloadStatusWithParams:(id)arg1 completionHandler:(CDUnknownBlockType)arg2 {
+    NSMutableDictionary *dic = arg1;
+    if ([dic[@"moduleID"] isEqualToString:@"feed"]) {
+        dic[@"refresh"] = @"auto";
+    }
+    [self cb_WBMainFeedGroup_reloadStatusWithParams:dic completionHandler:arg2];
+}
+
 @end
 
 @implementation UIView (WeiboPlugin)
@@ -89,8 +109,12 @@ static void __attribute__((constructor)) initialize(void) {
     NSLog(@"++++++++ WeiboPlugin loaded ++++++++");
     CBHookClassMethod(WBAdManager, @selector(sharedManager), @selector(cb_sharedManager));
     
+    CBHookClassMethod(WBMainUnreadFeedGroup, @selector(class), @selector(cb_WBMainUnreadFeedGroup_class));
+    
     CBHookInstanceMethod(WBTimeLineFeedGroup, @selector(status), @selector(cb_WBTimeLineFeedGroup_status));
     CBHookInstanceMethod(WBMainFeedGroup, @selector(status), @selector(cb_WBMainFeedGroup_status));
+    
+    CBHookInstanceMethod(WBMainFeedGroup, @selector(reloadStatusWithParams:completionHandler:), @selector(cb_WBMainFeedGroup_reloadStatusWithParams:completionHandler:))
     
     CBHookInstanceMethod(HomeViewController, @selector(updateHeaderViewWithAdBannerVisible:), @selector(cb_updateHeaderViewWithAdBannerVisible:));
     
