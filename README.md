@@ -10,8 +10,8 @@ Plugin to make weibo greater.
 * 确保存在[insert_dylib](https://github.com/Tyilo/insert_dylib)命令或者自行修改`Weibo`target中Run Script对应脚本
 * 自行解密App Store上微博客户端，将解密后的Weibo.app放置在工程目录下
 
-![](http://ofg6kncyv.bkt.clouddn.com/201703230.png)
+![](http://ofg6kncyv.bkt.clouddn.com/20170323-0.png)
 
 * 执行命令pod install, 打开工程选择`Weibo`target, command + R
 
-![](http://ofg6kncyv.bkt.clouddn.com/201703231.png)
+![](http://ofg6kncyv.bkt.clouddn.com/20170323-1.png)
